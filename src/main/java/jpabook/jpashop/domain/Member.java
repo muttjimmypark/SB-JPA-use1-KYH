@@ -22,7 +22,7 @@ public class Member {
     @Embedded
     private Address address;
 
-    /*
+    /* 2
     연관관계 거울이라는걸 주입
     Order자료형 테이블에 있는 member의 거울이다
      */
