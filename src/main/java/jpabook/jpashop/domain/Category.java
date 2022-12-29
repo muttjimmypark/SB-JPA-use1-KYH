@@ -48,10 +48,16 @@ public class Category {
     나 자신에 연관관계 매핑을 부여해서
     카테고리 같은 정보를 다룰때의 수직구조를 구현할 수 있다.
      */
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
     private Category parent;
 
     @OneToMany(mappedBy = "parent")
-    private List<Category> chlid = new ArrayList<>();
+    private List<Category> child = new ArrayList<>();
+
+
+    public void addChildCategory(Category child) {
+        this.child.add(child);
+        child.setParent(this);
+    }
 }

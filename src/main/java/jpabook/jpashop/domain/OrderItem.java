@@ -22,11 +22,11 @@ public class OrderItem {
     사실 Member-Order간, Order-OrderItem간
     양방향관계는 실무에서 쓰지않도록, 설계단계에서부터 고려해야한다.
      */
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id")
     private Item item;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     private Order order;
 

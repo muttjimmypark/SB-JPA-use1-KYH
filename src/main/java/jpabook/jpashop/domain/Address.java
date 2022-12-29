@@ -21,6 +21,7 @@ public class Address {
 
         JPA 스펙상 NoArgsConstructor를 반드시 필요로 하므로 (리플렉션 등 기술 지원)
         jpa가 허용하는 최대한 방어적인 권한인 protected로 NoArgs를 별도 정의내려놓는다.
+        Hibernate를 선택하면 private도 가능하다.
 
         (리플렉션이란 일단 이 클래스의 타입을 몰라도, 여기있는 메서드-타입-변수 들에 접근할수 있도록 api가 지원해주는것)
         ㄴ> Object이기 때문에 가능한걸까
