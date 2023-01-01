@@ -63,7 +63,7 @@ public class Order {
 
     /* 14
     아래는 연관관계 편의 메서드 들이다
-    양방향관계에서 한쪽의 메서드만 동작시켜도 양쪽에 반영되게 설계하는것
+    양방향관계에서 한쪽 엔티티의 메서드만 동작시켜도 양쪽에 반영되게 설계하는것
      */
     public void setMember(Member member) {
         this.member = member;
