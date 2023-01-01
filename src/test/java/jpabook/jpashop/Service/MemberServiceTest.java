@@ -83,4 +83,12 @@ class MemberServiceTest {
                 .isInstanceOf(IllegalStateException.class);
     }
 
+
+    /**
+     * test 경로가 별도의 리소스폴더/application.yml을 가지고 있으면
+     * 별도의 환경설정을 할수 있다.
+     * jdbc:h2:mem:test
+     *
+     * 스프링부트는 설정값을 다 지웠을시 메모리db에서 돌아가게 지원해준다
+     */
 }
