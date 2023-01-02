@@ -1,7 +1,9 @@
 package jpabook.jpashop.domain;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
@@ -12,6 +14,7 @@ import java.util.List;
 @Table(name = "orders") //order by와 혼선을 막기 위해 db테이블이름을 별도 명명
 @Getter
 @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Order {
 
     @Id
@@ -83,6 +86,7 @@ public class Order {
 
     /**
      * 생성 메서드
+     * (protected NoArgs 생성자를 만들어서 감춰놓음!)
      */
     public static Order createOrder(Member member, Delivery delivery, OrderItem... orderitems) {
         Order order = new Order();
