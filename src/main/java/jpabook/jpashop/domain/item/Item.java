@@ -42,16 +42,16 @@ public abstract class Item {
 
 
 
-    // 비즈니스 로직 시작
-
     /**
+     * 비즈니스 로직
      * 재고 증가
      */
-    public void addStrock(int quantity) {
+    public void addStock(int quantity) {
         this.stockQuantity += quantity;
     }
 
     /**
+     * 비즈니스 로직
      * 재고 감소
      */
     public void removeStock(int quantity) {

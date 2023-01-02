@@ -35,4 +35,35 @@ public class OrderItem {
 
     //주문수량
     private int count;
+
+
+    /**
+     * 생성 메서드
+     */
+    public static OrderItem createOrderItem(Item item, int orderPrice, int count) {
+        OrderItem orderItem = new OrderItem();
+
+        orderItem.setItem(item);
+        orderItem.setOrderPrice(orderPrice);
+        orderItem.setCount(count);
+
+        item.removeStock(count);
+
+        return orderItem;
+    }
+
+
+    /**
+     * 비즈니스 로직
+     * 주문취소
+     */
+    public void cancel() {
+        getItem().addStock(count); //관계를 닫기위해 관계맺은 상품의 재고를 원복
+
+        //this.setStatus(OrderItemStatus.CANCEL);
+    }
+
+    public int getTotalPrice() {
+        return getOrderPrice() * getCount();
+    }
 }
