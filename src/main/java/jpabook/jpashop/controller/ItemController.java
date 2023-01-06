@@ -65,24 +65,39 @@ public class ItemController {
     }
 
     @PostMapping("/items/{itemId}/edit")
-    public String updateItem(@ModelAttribute("form") BookForm form) {
+    public String updateItem(@PathVariable Long itemId, @ModelAttribute("form") BookForm form) {
 
-        Book book = new Book();
-        book.setId(form.getId());
-        book.setName(form.getName());
-        book.setPrice(form.getPrice());
-        book.setStockQuantity(form.getStockQuantity());
-        book.setAuthor(form.getAuthor());
-        book.setIsbn(form.getIsbn());
+        /**
+         * 준영속 엔티티
+         * id는 em에 올라가서 jpa의 관리대상인데
+         * 수정이 발생해서 진짜 이 객체 Book book은 jpa에게 관리되지 않는상태
+         *
+         * 그래서 밑에 service를 불러서 밀어넣는것
+         * 타고들어가보면 Repository에서 em.merge를 한것임
+         */
+//        Book book = new Book();
+//        book.setId(form.getId());
+//        book.setName(form.getName());
+//        book.setPrice(form.getPrice());
+//        book.setStockQuantity(form.getStockQuantity());
+//        book.setAuthor(form.getAuthor());
+//        book.setIsbn(form.getIsbn());
+//
+//        itemService.saveItem(book);
 
-        itemService.saveItem(book);
+        /**
+         * 서비스 단에서 변경감지 메서드를 구현해서
+         * 그쪽에 값만 던져주면, 서비스단에서의 변경은 변경감지로
+         *
+         * param이 많아지면 dto를 하나 구성해서 통으로 하나 넘겨도 좋다
+         */
+        itemService.updateItem(itemId, form.getName(), form.getPrice(), form.getStockQuantity());
+
         return "redirect:/items";
-
         /**
          * 외부위협이 id를 건드리면 db가 꼬이기 때문에
          * 수정작업은 (당연하긴한데) 접근권한에 대한 처리를 우선해야한다.
-         *
-         * 타고들어가보면 Repository에서 em.merge를 한것임
          */
+
     }
 }
